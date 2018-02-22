@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/css/iziModal.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/js/iziModal.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Games List</title>
+    <style>
+        body, html, .container-main {
+            height: 100%;
+            background-color: #f5f8fa;
+        }
+        body {
+            padding: 50px 0px 0px 0px;
+        }
+
+        table {
+            background-color: gold !important;
+        }
+
+        table thead {
+            background-color: darkorange !important;
+        }
+
+        .pageTitle {
+            background-color: greenyellow !important;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container text-center">
+
+        <h2 class="pageTitle">Partidas</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Rival</th>
+              <th scope="col">Placar</th>
+              <th scope="col">Data</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+                {% for game in games %}
+                    <tr>
+                      <th class="gameId" scope="row">{{ game.id }}</th>
+                      <td class="rivalTeam">{{ game.rival_team }}</td>
+                      <td class="gameScore">{{ game.gamesgoals__count }} vs {{ game.goals_against }}</td>
+                      <td>{{ game.date }}</td>
+                      <td>
+                          <button type="button" class="btn btn-primary trigger">
+                              Detail
+                           </button>
+                      </td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="100">Nenhuma partida foi cadastrada</td></tr>
+                {% endfor %}
+          </tbody>
+        </table>
+    </div>
+
+<div id="modal" data-iziModal-fullscreen="true"></div>
+</body>
+</html>
+
+<script>
+    $("#modal").iziModal();
+    $(document).on('click', '.trigger', function (event) {
+        event.preventDefault();
+        var line = $(this).closest('tr');
+        $('#modal').iziModal('setTitle', "Partida: Porto " + line.find('.gameScore').text() + " " + line.find('.rivalTeam').text());
+
+        $('#modal').iziModal('startLoading');
+        $.ajax({
+          url: '/soccer/gameDetail/' + line.find('.gameId').text(),
+        })
+          .done(function( data ) {
+            $("#modal .iziModal-content").html(data);
+            $('#modal').iziModal('stopLoading');
+        });
+        $('#modal').iziModal('setWidth', 1200);
+        $('#modal').iziModal('open');
+    });
+</script>

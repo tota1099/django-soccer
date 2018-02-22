@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Players List</title>
+    <style>
+        body, html {
+            height: 100%;
+            background-color: #f5f8fa;
+        }
+        body {
+            padding: 50px 0px 0px 0px;
+        }
+
+        table {
+            background-color: gold !important;
+        }
+
+        .container {
+            padding: 15px;
+        }
+
+        table thead {
+            background-color: darkorange !important;
+        }
+
+        .pageTitle {
+            background-color: greenyellow !important;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container text-center">
+
+        <h2 class="pageTitle">Gols Pró</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Rival</th>
+              <th scope="col">Jogador</th>
+              <th scope="col">Minuto</th>
+            </tr>
+          </thead>
+          <tbody>
+
+                {% for goal in goals %}
+                    <tr>
+                      <th scope="row">{{ goal.id }}</th>
+                      <td>{{ goal.game.rival_team }}</td>
+                      <td>{{ goal.player.first_name }}</td>
+                      <td>{{ goal.minute }}</td>
+                    </tr>
+                {% endfor %}
+          </tbody>
+        </table>
+
+
+        <h2>Cartões</h2>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Rival</th>
+              <th scope="col">Jogador</th>
+              <th scope="col">Minuto</th>
+            </tr>
+          </thead>
+          <tbody>
+
+                {% for card in cards %}
+                    <tr>
+                      <th scope="row">{{ card.id }}</th>
+                      <td>{{ card.game.rival_team }}</td>
+                      <td>{{ card.player.first_name }}</td>
+                      <td>{{ card.minute }}</td>
+                    </tr>
+                {% endfor %}
+          </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
