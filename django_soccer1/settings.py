@@ -81,10 +81,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'soccer',
-        'HOST': '127.0.0.1',
+        'HOST': 'database',
         'USER': 'root',
         'PASSWORD': 'root',
-        'PORT': '3307'
+        'PORT': '3306'
     }
 }
 

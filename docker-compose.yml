@@ -1,17 +1,24 @@
-version: "2"
+version: "3"
 
 services:
- database:
+  database:
     image: mysql:5.6
     ports:
-      - 3307:3306
+      - 3306:3306
     environment:
-    MYSQL_ROOT_PASSWORD: "root"
-    MYSQL_DATABASE: "soccer"
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=soccer
   web:
     build: .
-    command: python3 manage.py runserver 0.0.0.0:8000
+    depends_on:
+      - database
+    command: >
+      bash -c "python manage.py migrate
+      && python manage.py runserver 0.0.0.0:8000"
     volumes:
-      - .:/code
+      - .:/usr/src/app
     ports:
       - "8000:8000"
+    links:
+      - database
