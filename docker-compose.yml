@@ -9,6 +9,9 @@ services:
       - MYSQL_USER=root
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=soccer
+    volumes:
+      - ./docker/volumes/database/etc/mysql:/etc/mysql/conf.d
+      - ./docker/volumes/database-storage:/var/lib/mysql
   web:
     build: .
     depends_on:
