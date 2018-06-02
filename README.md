@@ -16,3 +16,5 @@
 * **Email address:** youremail@address.com
 * **Password:** password12345
 * **Password (again):** password12345
+
+**Open your browser in the address "http://localhost" and enjoy the application"
