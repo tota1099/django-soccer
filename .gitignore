@@ -1,2 +1,6 @@
 .idea/
 docker/volumes/database-storage/
+envsoccer/
+__pycache__/
+*.py[cod]
+*$py.class
