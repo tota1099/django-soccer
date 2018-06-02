@@ -14,4 +14,4 @@ services:
     volumes:
       - .:/code
     ports:
-      - "80:80"
+      - 80:80
