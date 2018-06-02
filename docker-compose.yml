@@ -8,10 +8,13 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=soccer
+    volumes:
+      - ./docker/volumes/database/etc/mysql:/etc/mysql/conf.d
+      - ./docker/volumes/database-storage:/var/lib/mysql
   web:
     build: .
     command: python3 manage.py runserver 0.0.0.0:80
     volumes:
-      - .:/code
+      - .:/usr/src/app
     ports:
       - 80:80

@@ -72,6 +72,9 @@
                       <td>{{ player.birth_date }}</td>
                       <td>{{ player.position.name }}</td>
                     </tr>
+                
+                {% empty %}
+                    <tr><td colspan="100">Nenhum jogador foi cadastrado</td></tr>
                 {% endfor %}
           </tbody>
         </table>

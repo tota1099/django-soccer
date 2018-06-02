@@ -55,6 +55,9 @@
                       <td>{{ goal.player.first_name }}</td>
                       <td>{{ goal.minute }}</td>
                     </tr>
+
+                {% empty %}
+                    <tr><td colspan="100">Nenhum gol foi cadastrado</td></tr>
                 {% endfor %}
           </tbody>
         </table>
@@ -79,6 +82,8 @@
                       <td>{{ card.player.first_name }}</td>
                       <td>{{ card.minute }}</td>
                     </tr>
+                {% empty %}
+                    <tr><td colspan="100">Nenhum cartão foi cadastrado</td></tr>
                 {% endfor %}
           </tbody>
         </table>
