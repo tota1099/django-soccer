@@ -1,12 +1,12 @@
 # Soccer Project with Django #
 
-### How run ? ###
+### Installing and running ###
 
 `$ docker-compose build --no-cache`
 
-`$ docker-compose run web python3 manage.py migrate`
-
 `$ docker-compose up -d`
+
+`$ docker-compose run web python3 manage.py migrate`
 
 **To acess the admin panel:**
 
