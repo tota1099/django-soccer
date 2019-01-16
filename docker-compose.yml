@@ -6,6 +6,7 @@ services:
     ports:
       - 3306:3306
     environment:
+      - MYSQL_USER=root
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=soccer
     volumes:
@@ -13,8 +14,12 @@ services:
       - ./docker/volumes/database-storage:/var/lib/mysql
   web:
     build: .
-    command: python3 manage.py runserver 0.0.0.0:80
+    depends_on:
+      - database
+    command: "python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/usr/src/app
     ports:
-      - 80:80
+      - "8000:8000"
+    links:
+      - database

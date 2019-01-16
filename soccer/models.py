@@ -31,7 +31,7 @@ class GamesGoals(models.Model):
     note = models.CharField(max_length=255, blank=True)
     player = models.ForeignKey(Player, on_delete=models.CASCADE)
     game = models.ForeignKey(Games, on_delete=models.CASCADE)
-    minute = models.IntegerField(max_length=3, default=0)
+    minute = models.IntegerField(default=0)
 
 
     class Meta:
