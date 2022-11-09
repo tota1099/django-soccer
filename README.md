@@ -22,3 +22,4 @@
 * **Password (again):** password12345
 
 **Open your browser in the address "http://localhost:8000" and enjoy the application**
+**Open your browser in the address "http://localhost:8000/admin/login" and enjoy the application as admin**
